@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 import os
 from pathlib import Path
+from dotenv import load_dotenv
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -51,7 +53,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.BasicAuthentication',
         'knox.auth.TokenAuthentication',
-        ),
+    ),
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
     ],
@@ -107,11 +109,16 @@ STORAGES = {
     "default": {
         "BACKEND": "storages.backends.s3.S3Storage",
         "OPTIONS": {
-          "bucket_name": os.environ["BUCKET_NAME"],
-          "querystring_auth": False,
-          "region_name": "sa-east-1",
-          "file_overwrite": True
-    }, 
+            "bucket_name": os.environ["BUCKET_NAME"],
+            "querystring_auth": False,
+            "region_name": "sa-east-1",
+            "file_overwrite": True,
+            "object_parameters": {
+                "Metadata": {
+                    'ContentType': 'image/jpeg'
+                }
+            }
+        },
     },
 }
 AWS_S3_ACCESS_KEY_ID = os.environ["AWS_S3_ACCESS_KEY_ID"]
