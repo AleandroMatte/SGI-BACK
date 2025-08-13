@@ -20,6 +20,7 @@ def add_test_user_to_admin_group(apps, schema_editor):
     user.groups.set([created_group])
     user.save()
 
+
 def remove_test_user_from_admin_group(apps, schema_editor):
     UserModel = models.User
     user = UserModel.objects.filter(
@@ -27,9 +28,11 @@ def remove_test_user_from_admin_group(apps, schema_editor):
     ).first()
     user.groups.clear()
     user.save()
+
+
 class Migration(migrations.Migration):
     dependencies = [
-        ("users", "0004_create_default_groups"),
+        ("users", "0003_create_default_groups"),
     ]
 
     operations = [migrations.RunPython(add_test_user_to_admin_group, remove_test_user_from_admin_group)]

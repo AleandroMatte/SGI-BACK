@@ -16,21 +16,6 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name="SGADepartaments",
-            fields=[
-                (
-                    "id",
-                    models.BigAutoField(
-                        auto_created=True,
-                        primary_key=True,
-                        serialize=False,
-                        verbose_name="ID",
-                    ),
-                ),
-                ("departament_name", models.CharField(max_length=200)),
-            ],
-        ),
-        migrations.CreateModel(
             name="SGAUserModel",
             fields=[
                 (
@@ -139,14 +124,7 @@ class Migration(migrations.Migration):
                         to="auth.permission",
                         verbose_name="user permissions",
                     ),
-                ),
-                (
-                    "departament_id",
-                    models.ForeignKey(
-                        on_delete=django.db.models.deletion.DO_NOTHING,
-                        to="users.sgadepartaments",
-                    ),
-                ),
+                )
             ],
             options={
                 "verbose_name": "user",

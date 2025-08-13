@@ -8,7 +8,6 @@ from django.contrib.auth import get_user_model
 
 def create_default_users(apps, schema_editor):
     # users for devs to play around in development environ
-    deparament = models.SGADepartaments.objects.first()
     UserModel = get_user_model()
     UserModel.objects.create_user(
         first_name="Carlos",
@@ -16,7 +15,6 @@ def create_default_users(apps, schema_editor):
         username="test_user1",
         password="91200399",
         birth_date=datetime.now(),
-        departament_id=deparament,
         position="PROGRANADOR SENIOR"
     )
     UserModel.objects.create_user(
@@ -25,15 +23,16 @@ def create_default_users(apps, schema_editor):
         username="test_user2",
         password="91200399",
         birth_date=datetime.now(),
-        departament_id=deparament,
         position="PROGRANADOR SENIOR"
     )
+
 
 def delete_default_users(apps, schema_editor):
     # users for devs to play around in development environ
     UserModel = models.SGAUserModel
     UserModel.objects.all().delete()
 
+
 class Migration(migrations.Migration):
-    dependencies = [("users", "0002_create_default_departament"),]
+    dependencies = [("users", "0001_initial"),]
     operations = [migrations.RunPython(create_default_users, delete_default_users)]

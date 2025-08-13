@@ -3,6 +3,7 @@
 from django.db import migrations
 from django.contrib.auth import models
 
+
 def create_admin_group(apps, schema_editor):
     # FIRST I CREATE THE GROUP
     Groups = models.Group
@@ -17,6 +18,7 @@ def create_admin_group(apps, schema_editor):
     )
     created_group.save()
 
+
 def delete_admin_group(apps, schema_editor):
     Groups = models.Group
     created_group = Groups.objects.filter(
@@ -25,12 +27,13 @@ def delete_admin_group(apps, schema_editor):
     created_group.permissions.clear()
     created_group.save()
     Groups.objects.filter(
-            name="ADMIN"
-        ).first().delete()
+        name="ADMIN"
+    ).first().delete()
+
 
 class Migration(migrations.Migration):
     dependencies = [
-        ("users", "0003_create_default_users"),
+        ("users", "0002_create_default_users"),
     ]
 
     operations = [(migrations.RunPython(create_admin_group, delete_admin_group))]
