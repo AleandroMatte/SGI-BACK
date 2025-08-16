@@ -16,6 +16,7 @@ class AssetTypeView(generics.ListCreateAPIView):
 class AssetTypeDetailsView(generics.RetrieveUpdateDestroyAPIView):
     queryset = AssetType.objects.all()
     serializer_class = AssetTypeSerializer
+    permission_classes = (AllowAny,)
 
 
 class AssetView(generics.ListCreateAPIView):
@@ -28,3 +29,5 @@ class AssetView(generics.ListCreateAPIView):
 class AssetDetailsView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Asset.objects.all()
     serializer_class = AssetSerializer
+    permission_classes = (AllowAny,)
+    authentication_classes = ()

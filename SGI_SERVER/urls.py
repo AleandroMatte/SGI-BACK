@@ -23,4 +23,5 @@ urlpatterns = [
     path("disciplines/", include("discipline.urls")),
     path("assets/", include("assets.urls")),
     path("security/", include("users.urls")),
+    path("inspections/", include("inspections.urls")),
 ]

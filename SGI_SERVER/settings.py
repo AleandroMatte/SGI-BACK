@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "discipline",
     "users",
     "assets",
+    "inspections"
 ]
 
 REST_FRAMEWORK = {
