@@ -16,7 +16,7 @@ def validate_lat_long(value: str):
             params={"value": value},
         )
     # check if the coordinates have a valid amount of digits before the '.'
-    if len(value.split(".")[0]) < 2 or len(value.split(".")[0]) > 4:
+    if len(value.split(".")[0]) < 2 or       len(value.split(".")[0]) > 4:
         raise ValidationError(
             _("%(value)s a coordinate must have at least 2 characters before the point and at max 4."),
             params={"value": value},
