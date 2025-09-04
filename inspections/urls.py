@@ -1,9 +1,10 @@
 from django.urls import path
 
-from inspections.views import InspectionByAssetView, InspectionDetailView, InspectionListCreateView
+from inspections import views
 
 urlpatterns = [
-    path("", InspectionListCreateView.as_view()),
-    path("<pk>/", InspectionDetailView.as_view()),
-    path("asset/<uuid:assetId>/", InspectionByAssetView.as_view())
+    path("", views.InspectionListCreateView.as_view()),
+    path("<pk>/", views.InspectionDetailView.as_view()),
+    path("<uuid:inspection_id>/data/", views.InspectionDataListCreate.as_view()),
+    path("asset/<uuid:assetId>/", views.InspectionByAssetView.as_view())
 ]

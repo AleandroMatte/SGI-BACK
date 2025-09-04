@@ -25,6 +25,5 @@ class InspectionByAssetView(generics.ListAPIView):
     serializer_class = InspectionSerializer
 
     def get_queryset(self):
-        print(self.kwargs)
         asset_id = self.kwargs['assetId']
         return InspectionModel.objects.filter(asset=asset_id).all()
